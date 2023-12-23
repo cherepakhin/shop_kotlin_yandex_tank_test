@@ -1,0 +1,19 @@
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  token_file: "token.txt"
+phantom:
+  address: 192.168.1.57:8980
+  load_profile:
+    load_type: rps
+    schedule: const(10, 2s)
+  ammofile: /var/loadtest/ammo-uri.txt
+  ammo_type: uri
+console:
+  enabled: true
+telegraf:
+  config: monitoring.xml
+  enabled: true
+  kill_old: false
+  package: yandextank.plugins.Telegraf
+  ssh_timeout: 5s

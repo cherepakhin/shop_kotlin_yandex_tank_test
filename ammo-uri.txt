@@ -1,0 +1,3 @@
+[Connection: close]
+[Cookie: None]
+/api/echo/message_to_shop
