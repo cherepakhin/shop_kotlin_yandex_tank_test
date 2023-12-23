@@ -35,5 +35,7 @@ out/
 .vscode/
 
 ### log ###
-logs/
+/logs/
+**/*.log
 
+token.txt
