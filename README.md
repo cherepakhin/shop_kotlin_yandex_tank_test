@@ -30,11 +30,11 @@ overload:
     package: yandextank.plugins.DataUploader
     token_file: "token.txt" #токен для публикации результатов в сервисе yandex-tank. Токен выдается при регистрации в сервисе
 phantom:
-    address: 127.0.0.1:8780 #адрес тестируемого сервиса 127.0.0.1:8780.
+    address: 192.168.1.20:8980 # адрес тестируемого сервиса
     load_profile: # описание нагрузки
         load_type: rps #тип нагрузки: "rps" - количество запросов в секунду, "matrix" - матричная нагрузка 
         schedule: const(1000, 1m) # нагрузка постоянная (const) 1000 rps в течении 1 минуты
-    ammofile: /var/loadtest/ammo-uri.txt # по какому REST (без адреса сервера) стреляем ("/api/echo/aaa")
+    ammofile: /var/loadtest/ammo-uri.txt # Папка проекта подключена у корню docker, патроны docker будут по пути /var/loadtest/ammo-uri.txt. В ammo-uri.txt описано по какому REST стреляем ("/api/echo/test_message_to_shop"). 
     ammo_type: uri 
 console:
     enabled: true # показывать картинку проведения теста
@@ -42,3 +42,9 @@ telegraf:
     enabled: false
 
 ````
+
+Результат:
+
+[https://overload.yandex.net/671710#tab=test_data&tags=&plot_groups=main&machines=&metrics=&slider_start=1703342886&slider_end=1703342888](https://overload.yandex.net/671710#tab=test_data&tags=&plot_groups=main&machines=&metrics=&slider_start=1703342886&slider_end=1703342888)
+
+Нагрузка постоянная (см. выше schedule: const(1000, 1m) # нагрузка постоянная (const) 1000 rps)
