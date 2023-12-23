@@ -35,5 +35,5 @@ out/
 .vscode/
 
 ### log ###
-log/
+logs/
 
