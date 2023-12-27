@@ -4,6 +4,8 @@
 
 Здесь описан только один из сценариев теста с помощью [Yandex-tank](https://github.com/yandex/yandex-tank). 
 
+Тестируемый сервис: [https://github.com/cherepakhin/shop_kotlin](https://github.com/cherepakhin/shop_kotlin).
+
 Сам yandex-tank крутится в Docker. Скрипт для проведения теста [./tank_run_shop_kotlin.sh](tank_run_shop_kotlin.sh):
 
 ````shell
