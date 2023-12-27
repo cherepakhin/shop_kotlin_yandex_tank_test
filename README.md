@@ -47,4 +47,13 @@ telegraf:
 
 [https://overload.yandex.net/671710#tab=test_data&tags=&plot_groups=main&machines=&metrics=&slider_start=1703342886&slider_end=1703342888](https://overload.yandex.net/671710#tab=test_data&tags=&plot_groups=main&machines=&metrics=&slider_start=1703342886&slider_end=1703342888)
 
-Нагрузка постоянная (см. выше schedule: const(1000, 1m) # нагрузка постоянная (const) 1000 rps)
+### Отчеты при нагрузке 200 rps в течении 60 сек.
+
+Нагрузка постоянная (см. выше schedule: const(200, 1m) # нагрузка постоянная (const) 200 rps)
+
+Вид с машины тестера:
+
+![test_const 200, 60s.png](https://github.com/cherepakhin/shop_kotlin_yandex_tank_test/blob/master/doc/test_const(200, 60s).png)
+
+Результаты:
+[doc/test_const(200, 60s).png](https://github.com/cherepakhin/shop_kotlin_yandex_tank_test/blob/master/doc/test_const_result_200rps_60s.png)
