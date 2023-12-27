@@ -56,3 +56,12 @@ rps - request per second
 
 Отчет в сервисе Yandex Tank:
 ![Отчет в сервисе Yandex Tank](doc/test_const_result_200rps_60s.png)
+
+Расшифровка одного из результатов:
+
+![description_result](doc/description_result.png)
+
+для 98% запросов ответ меньше 7 ms
+...
+для 75% запросов ответ меньше 1 ms
+для 50% запросов ответ меньше 0.850 ms
