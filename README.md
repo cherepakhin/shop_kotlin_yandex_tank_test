@@ -53,7 +53,7 @@ telegraf:
 
 Вид с машины тестера:
 
-[Результаты behave тестирования](doc/runned_test_const_200_ 60s.png)
+![Результаты behave тестирования](doc/runned_test_const_200_ 60s.png)
 
 Отчет в сервисе Yandex Tank:
-[Отчет в сервисе Yandex Tank](doc/test_const_result_200rps_60s.png)
+![Отчет в сервисе Yandex Tank](doc/test_const_result_200rps_60s.png)
