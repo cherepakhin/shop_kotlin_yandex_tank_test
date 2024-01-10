@@ -22,7 +22,7 @@ docker run --entrypoint yandex-tank \
 В папке <i><b>/var/loadtest</b></i> 3 файла:
 - token.txt - токен для публикации для публикации результатов в сервисе yandex-tank. Токен выдается при регистрации в сервисе.
 - load.yaml - задание параметров нагрузки
-- ammo-uri.txt - расстреливаемый URI (<i>/api/echo/aaa</i>) без адреса сервиса (<i>http://127.0.0.1:8780)
+- ammo-uri.txt - расстреливаемый URI (<i>/api/echo/aaa</i>) без адреса сервиса (<i>http://127.0.0.1:8780</i>)
 
 Файл load.yaml: 
 
@@ -49,6 +49,8 @@ telegraf:
 
 [https://overload.yandex.net/671710#tab=test_data&tags=&plot_groups=main&machines=&metrics=&slider_start=1703342886&slider_end=1703342888](https://overload.yandex.net/671710#tab=test_data&tags=&plot_groups=main&machines=&metrics=&slider_start=1703342886&slider_end=1703342888)
 
+<b><ins>Отчеты хранятся в сервисе yandex-tank (не на локальной машине!)</ins></b>
+
 ### Отчеты при нагрузке 200 rps в течении 60 сек.
 
 rps - request per second
@@ -67,13 +69,61 @@ rps - request per second
 для 75% запросов ответ меньше 1.171 ms<br/>
 для 50% запросов ответ меньше 0.802 ms<br/>
 
-### Отчеты Grafana при нагрузке 600 rps в течении 180 сек.
+### Тесты и отчеты <ins>Grafana</ins> при нагрузке 600 rps в течении 180 сек.
+
+<b>Grafana!!! (не yandex-tank отчеты)</b> 
+
+Тестируется REST сервис запросом GET [http://192.168.1.20:8980/shop_kotlin/api/group_product/find?name=Notebooks](http://192.168.1.20:8980/shop_kotlin/api/group_product/find?name=Notebooks)
+
+URI для "расстрела" в ./ammo_uri.txt
+
+````text
+[Connection: close]
+[Cookie: None]
+/shop_kotlin/api/group_product/find?name=Notebooks
+````
+
+Адрес и параметры нагрузки в файле load.yaml
+
+````yaml
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  token_file: "token.txt"
+phantom:
+  address: 192.168.1.20:8980
+  load_profile:
+    load_type: rps
+    schedule: const(600, 180s)
+  ammofile: /var/loadtest/ammo-uri.txt
+  ammo_type: uri
+console:
+  enabled: true
+telegraf:
+  config: monitoring.xml
+  enabled: true
+  kill_old: false
+  package: yandextank.plugins.Telegraf
+  ssh_timeout: 5s
+````
+
+#### Отчеты Grafana:
 
 ![grafana_600rps_180s](doc/test_grafana_const_result_const_600_180s.png)
+
+````shell
+phantom:
+    address: 192.168.1.20:8980
+    load_profile:
+      load_type: rps
+      schedule: const(600, 180s)
+    ammofile: /var/loadtest/ammo-uri.txt
+    ammo_type: uri
+````
 
 <span style="color:green">Зеленая линия</span> - <b>"расстреливаемая машина"</b> 192.168.1.20:8980 
 
 <span style="color:yellow">Желтая линия</span> - <b>"стреляющая машина"</b> 192.168.1.57:8980 (отражена на графике просто для примера).
 
-Показана загрузка процессора. Проведено 2 теста.
+Показана загрузка процессора. Проведено 2 теста. В Grafana есть множество других показателей для мониторинга (расход памяти, загрузка сети и т.д.) 
 
