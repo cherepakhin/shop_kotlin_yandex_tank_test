@@ -1,3 +1,3 @@
 [Connection: close]
 [Cookie: None]
-/api/echo/test_message_to_shop
+/shop_kotlin/api/group_product/find?name=Notebooks
